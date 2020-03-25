@@ -1,4 +1,4 @@
-.. note:: 请确保您查看的文档与正在使用的软件版本相匹配。
+.. 提示:: 请确保您查看的文档与正在使用的软件版本相匹配。
           请参见左侧导航面板顶部的版本标签。
 	  您可以使用导航面板底部的选择器来更改它。
 
@@ -7,8 +7,8 @@ A Blockchain Platform for the Enterprise
 
 .. image:: images/hyperledger_fabric_logo_color.png
 
-Enterprise grade permissioned distributed ledger platform that offers
-modularity and versatility for a broad set of industry use cases.
+企业级许可分布式账本平台，
+提供模块化和多功能性，适用于广泛的行业用例集
 
 .. toctree::
    :maxdepth: 1
