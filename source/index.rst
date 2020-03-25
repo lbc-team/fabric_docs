@@ -1,8 +1,6 @@
-.. note:: Please make sure you are looking at the documentation that
-	  matches the version of the software you are using. See the
-	  version label at the top of the navigation panel on the left.
-	  You can change it using selector at the bottom of that
-	  navigation panel.
+.. note:: 请确保您查看的文档与正在使用的软件版本相匹配。
+          请参见左侧导航面板顶部的版本标签。
+	  您可以使用导航面板底部的选择器来更改它。
 
 A Blockchain Platform for the Enterprise
 ========================================
