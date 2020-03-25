@@ -31,9 +31,9 @@ A Blockchain Platform for the Enterprise
    questions
    status
 
-.. note:: If you have questions not addressed by this documentation, or run into
-          issues with any of the tutorials, please visit the :doc:`questions`
-          page for some tips on where to find additional help.
-
+.. note:: 如果您遇到的问题没有在本文档中得到解决，
+          或有任何关于教程的问题，请访问:doc:`questions`
+	  有关在何处查找其他帮助的一些提示。
+	  
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/
