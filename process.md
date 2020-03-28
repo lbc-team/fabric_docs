@@ -3,5 +3,5 @@
 
 | 文件               |  译者(认领-完成)    |   校对  |
 | ----------------- | ----------------- | ---------------   |
-|source/index.rst   |  Alex(03/24 - 03/26)|  Tiny熊(03/27)  |
-|source/discovery-overview.rst   |  Alex(03/28 - 03/30)|  ALEX(03/31)  |
+|source/index.rst   |  Alex(03/24 - 03/26)|  Leeduckgo(03/27)  |
+|source/discovery-overview.rst   |  Leeduckgo(03/28 - 03/30)|  Alex(03/31)  |
