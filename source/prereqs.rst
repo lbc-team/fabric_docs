@@ -182,33 +182,28 @@ to:
 
 These need to be ``false`` and ``true`` respectively.
 
-The ``curl`` command that comes with Git and Docker Toolbox is old and
-does not handle properly the redirect used in
-:doc:`getting_started`. Make sure you have and use a newer version
-which can be downloaded from the `cURL downloads page
-<https://curl.haxx.se/download.html>`__
+Docker Toolbox命令自带的 ``curl`` 命令版本有点旧，不能正确应用在 :doc:`getting_started`
+中。所以请从 `cURL
+<https://curl.haxx.se/download.html>`__页面中安装新的版本。
 
-For Node.js you also need the necessary Visual Studio C++ Build Tools
-which are freely available and can be installed with the following
-command:
+对于 Node.js 您需要 Visual Studio C++ Build 工具
+他们可以用下面命令免费获得:
 
 .. code:: bash
 
 	  npm install --global windows-build-tools
 
-See the `NPM windows-build-tools page
-<https://www.npmjs.com/package/windows-build-tools>`__ for more
-details.
+参照 `NPM windows-build-tools 页面
+<https://www.npmjs.com/package/windows-build-tools>`__ 获得更多细节。
 
-Once this is done, you should also install the NPM GRPC module with the
-following command:
+一旦上面命令运行成功，您可以用下面命令获得NPM GRPC模块:
 
 .. code:: bash
 
 	  npm install --global grpc
 
-Your environment should now be ready to go through the
-:doc:`getting_started` samples and tutorials.
+到这一步，您的环境应该可以运行
+:doc:`getting_started` 中的示例和教程了。
 
 .. note:: If you have questions not addressed by this documentation, or run into
           issues with any of the tutorials, please visit the :doc:`questions`
