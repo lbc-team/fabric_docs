@@ -1,14 +1,12 @@
-Prerequisites
+先决条件
 =============
 
-Before we begin, if you haven't already done so, you may wish to check that
-you have all the prerequisites below installed on the platform(s)
-on which you'll be developing blockchain applications and/or operating
-Hyperledger Fabric.
+在我们开始之前，您应该检查一下您已在平台上安装了以下所有必备的组件
+您将在其中开发Band Stand应用程序和操作超账本结构
 
-Install Git
+安装 Git
 -----------
-Download the latest version of `git
+从下面的地址下载最新版本的 `git
 <https://git-scm.com/downloads>`_ if it is not already installed,
 or if you have problems running the curl commands.
 
