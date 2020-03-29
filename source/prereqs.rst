@@ -2,72 +2,63 @@
 =============
 
 在我们开始之前，您应该检查一下您已在平台上安装了以下所有必备的组件
-您将在其中开发Band Stand应用程序和操作超账本结构
+您将在其中开发Band Stand应用程序和操作超账本结构。
 
 安装 Git
 -----------
-从下面的地址下载最新版本的 `git
-<https://git-scm.com/downloads>`_ if it is not already installed,
-or if you have problems running the curl commands.
+如果之前没有安装过git命令或者它运行有错，请从下面的地址下载最新版本的 `git
+<https://git-scm.com/downloads>`_。
 
-Install cURL
+安装 cURL
 ------------
 
-Download the latest version of the `cURL
-<https://curl.haxx.se/download.html>`__ tool if it is not already
-installed or if you get errors running the curl commands from the
-documentation.
+如果之前没有安装过cURL命令或者它运行有错，请从下面的地址下载最新版本的 `cURL
+<https://curl.haxx.se/download.html>`__ 
 
-.. note:: If you're on Windows please see the specific note on `Windows
-   extras`_ below.
+.. note:: 如果您是运行再windows平台下，请参考下面的 `Windows
+   extras`_ .
 
 Docker and Docker Compose
 -------------------------
 
-You will need the following installed on the platform on which you will be
-operating, or developing on (or for), Hyperledger Fabric:
+你需要安装如下的组件在你的Hyperledger Fabric系统上:
 
-  - MacOSX, \*nix, or Windows 10: `Docker <https://www.docker.com/get-docker>`__
-    Docker version 17.06.2-ce or greater is required.
-  - Older versions of Windows: `Docker
+  - MacOSX, \*nix, 和 Windows 10: `Docker <https://www.docker.com/get-docker>`__
+    Docker 的版本需要在 17.06.2-ce 以上.
+  - 比Windows 10低版本的Windows还需要安装: `Docker
     Toolbox <https://docs.docker.com/toolbox/toolbox_install_windows/>`__ -
-    again, Docker version Docker 17.06.2-ce or greater is required.
 
-You can check the version of Docker you have installed with the following
-command from a terminal prompt:
+您可以在命令行终端中通过运行如下命令来检查已经安装的docker版本
 
 .. code:: bash
 
   docker --version
 
-.. note:: The following applies to linux systems running systemd.
+.. note:: 下面的应用运行在有systemd的linux系统上。
 
-Make sure the docker daemon is running.
+启动docker的守候进程.
 
 .. code:: bash
 
   sudo systemctl start docker
 
-Optional: If you want the docker daemon to start when the system starts, use the following:
+Optional: 如果您希望docker的售后进程跟随系统一起启动，请执行:
 
 .. code:: bash
 
   sudo systemctl enable docker
 
-Add your user to the docker group.
+增加用户到docker组中.
 
 .. code:: bash
 
   sudo usermod -a -G docker <username>
 
-.. note:: Installing Docker for Mac or Windows, or Docker Toolbox will also
-          install Docker Compose. If you already had Docker installed, you
-          should check that you have Docker Compose version 1.14.0 or greater
-          installed. If not, we recommend that you install a more recent
-          version of Docker.
-
-You can check the version of Docker Compose you have installed with the
-following command from a terminal prompt:
+.. note:: 在Mac或者Windows系统上安装Docker或者Docker Toolbox会同时安装Docker Compose
+          所以，应该在已经安装过Docker的系统上，检查Docker Compose的版本应该在1.14.0以上
+	  如果不是，请安装较新的版本。
+	  
+您可以在您的命令行终端中运行如下命令来检查Docker Compose的版本:
 
 .. code:: bash
 
@@ -75,60 +66,48 @@ following command from a terminal prompt:
 
 .. _Go:
 
-Go Programming Language
+Go 编程语言
 -----------------------
 
-Hyperledger Fabric uses the Go Programming Language for many of its
-components.
+Hyperledger Fabric 使用Go语言编写
 
-  - `Go <https://golang.org/dl/>`__ version 1.13.x is required.
+  - `Go <https://golang.org/dl/>`__ 请安装1.13.x以上的Go语言。
 
-Given that we will be writing chaincode programs in Go, there are two
-environment variables you will need to set properly; you can make these
-settings permanent by placing them in the appropriate startup file, such
-as your personal ``~/.bashrc`` file if you are using the ``bash`` shell
-under Linux.
+考虑到我们将使用Go来编写链码程序，有两个您需要正确设置环境变量；您可以
+通过将设置放在适当的启动文件中而永久设置，例如
+作为您的个人`~/.bashrc``文件，如果您使用的是``bash`` shell在Linux下。
 
-First, you must set the environment variable ``GOPATH`` to point at the
-Go workspace containing the downloaded Fabric code base, with something like:
+首先, 您需要设置环境变量 ``GOPATH`` 来指定链码的工作路径:
 
 .. code:: bash
 
   export GOPATH=$HOME/go
 
-.. note:: You **must** set the GOPATH variable
+.. note:: 您 **必须** 设置GOPATH环境变量
 
-  Even though, in Linux, Go's ``GOPATH`` variable can be a colon-separated list
-  of directories, and will use a default value of ``$HOME/go`` if it is unset,
-  the current Fabric build framework still requires you to set and export that
-  variable, and it must contain **only** the single directory name for your Go
-  workspace. (This restriction might be removed in a future release.)
+  尽管在Linux中，Go的“GOPATH”变量可以是冒号分隔的列表，如果未设置，则将使用默认值`$HOME/go`，
+  当前的Fabric构建框架仍然要求您设置并声明该变量，它必须且只能包含**一个**目录。
+  （此限制可能会在以后的版本中删除。）
 
-Second, you should (again, in the appropriate startup file) extend your
-command search path to include the Go ``bin`` directory, such as the following
-example for ``bash`` under Linux:
+其次，您应该（或者在启动文件中）命令的搜索路径中包含Go的``bin``目录，如下所示Linux下的“bash”示例：
 
 .. code:: bash
 
   export PATH=$PATH:$GOPATH/bin
 
-While this directory may not exist in a new Go workspace installation, it is
-populated later by the Fabric build system with a small number of Go executables
-used by other parts of the build system. So even if you currently have no such
-directory yet, extend your shell search path as above.
+如果上面的路径不存在，这条命令本身不会报错，但是当我们build我们的Fabric系统时，就会弹出错误。
+所以请确保它存在，并且设置正确。
 
 Node.js Runtime and NPM
 -----------------------
 
-If you will be developing applications for Hyperledger Fabric leveraging the
-Hyperledger Fabric SDK for Node.js, version 8 is supported from 8.9.4 and higher.
-Node.js version 10 is supported from 10.15.3 and higher.
+如果您将使用Node.js版本的Hyperledger Fabric SDK开发，请使用
+8.9.4及更高版本的Node.js 8，10.15.3及更高版本支持Node.js 10。
 
-  - `Node.js <https://nodejs.org/en/download/>`__ download
+  - `Node.js <https://nodejs.org/en/download/>`__ 下载
 
-.. note:: Installing Node.js will also install NPM, however it is recommended
-          that you confirm the version of NPM installed. You can upgrade
-          the ``npm`` tool with the following command:
+.. note:: 安装Node.js也将安装NPM，但是请确认已经安装的NPM版本。你可以
+	  使用以下命令升级 “npm”：
 
 .. code:: bash
 
@@ -137,11 +116,10 @@ Node.js version 10 is supported from 10.15.3 and higher.
 Python
 ^^^^^^
 
-.. note:: The following applies to Ubuntu 16.04 users only.
+.. note:: 以下仅适用于Ubuntu16.04用户。
 
-By default Ubuntu 16.04 comes with Python 3.5.1 installed as the ``python3`` binary.
-The Fabric Node.js SDK requires an iteration of Python 2.7 in order for ``npm install``
-operations to complete successfully.  Retrieve the 2.7 version with the following command:
+默认情况下，Ubuntu 16.04系统会安装python3.5.1。
+Fabric Node.js SDK的“npm install”``需要Python 2.7。使用请使用以下命令查看python2的版本：
 
 .. code:: bash
 
@@ -158,27 +136,19 @@ Check your version(s):
 Windows extras
 --------------
 
-If you are developing on Windows 7, you will want to work within the
-Docker Quickstart Terminal. However, by default it uses an old `Git
-Bash <https://git-scm.com/downloads>`__ and experience has shown this
-to be a poor development environment with limited functionality. It is
-suitable to run Docker based scenarios, such as
-:doc:`getting_started`, but you will have difficulties with operations
-involving the ``make`` and ``docker`` commands.
+如果您是在Windows7上开发，并且使用Docker的启动终端。那么它默认会调用一个老版本的“Git”
+Bash<https://git scm.com/downloads>``经验表明它是一个功能不全的环境。它是适合运行基于Docker的场景，
+例如:doc:`getting_started`, 但在使用时会遇到问题，比如运行：“make”和“docker”命令。 
 
-Instead, it is recommended to use the MSYS2 environment and run make
-and docker from the MSYS2 command shell. To do so, `install
+因此，我们建议在MSYS2的shell环境中运行make和docker命令。 所以, `安装
 MSYS2 <https://github.com/msys2/msys2/wiki/MSYS2-installation>`__
-(along with the base developer toolchain and gcc packages using
-pacman) and launch Docker Toolbox from the MSYS2 shell with the
-following command:
+(用pacman来安装开发工具链和gcc包) 并且用下面命令来启动Docker Toolbox :
 
 ::
 
    /c/Program\ Files/Docker\ Toolbox/start.sh
 
-Alternatively, you can change the Docker Quickstart Terminal command
-to use MSYS2 bash by changing the target of the Windows shortcut from:
+或者, 您也可以更改Docker的启动终端设置，让他使用MSYS2 bash:
 
 ::
 
@@ -190,23 +160,20 @@ to:
 
    "C:\msys64\usr\bin\bash.exe" --login -i "C:\Program Files\Docker Toolbox\start.sh"
 
-With the above change, you can now simply launch the Docker Quickstart
-Terminal and get a suitable environment.
+通过上面的更改，您现在可以容易地启动Docker Quickstart然后得到一个可用的环境。
 
-On Windows 10 you should use the native Docker distribution and you
-may use the Windows PowerShell. However, for the ``binaries``
-command to succeed you will still need to have the ``uname`` command
-available. You can get it as part of Git but beware that only the
-64bit version is supported.
+在Windows 10上，您应该使用本机Docker发行版可以使用Windows PowerShell。但是，对于``binaries``
+命令要成功，您仍然需要使用``uname``命令可用。你可以把它作为Git的一部分，但是要注意只有
+支持64位版本。
 
-Before running any ``git clone`` commands, run the following commands:
+在运行 ``git clone`` 命令之前, 请先运行下面命令:
 
 ::
 
     git config --global core.autocrlf false
     git config --global core.longpaths true
 
-You can check the setting of these parameters with the following commands:
+您可以通过下面命令检查git的设置:
 
 ::
 
