@@ -162,8 +162,8 @@ to:
 
 通过上面的更改，您现在可以容易地启动Docker Quickstart然后得到一个可用的环境。
 
-在Windows 10上，您应该使用本机Docker发行版可以使用Windows PowerShell。但是，对于``binaries``
-命令要成功，您仍然需要使用``uname``命令可用。你可以把它作为Git的一部分，但是要注意只有
+在Windows 10上，您应该使用本机Docker发行版可以使用Windows PowerShell。但是，对于 ``binaries`` 
+命令要成功，您仍然需要使用 ``uname`` 命令可用。你可以把它作为Git的一部分，但是要注意只有
 支持64位版本。
 
 在运行 ``git clone`` 命令之前, 请先运行下面命令:
