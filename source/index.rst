@@ -8,7 +8,7 @@ A Blockchain Platform for the Enterprise
 .. image:: images/hyperledger_fabric_logo_color.png
 
 企业级许可分布式账本平台，
-提供模块化和多功能性，适用于广泛的行业用例集
+提供模块化和多功能性，适用于广泛的行业案例。
 
 .. toctree::
    :maxdepth: 1
