@@ -2,17 +2,17 @@
 =============
 
 在我们开始之前，您应该检查一下您已在平台上安装了以下所有必备的组件
-您将在其中开发Band Stand应用程序和操作超账本结构。
+因为您将在这个平台上搭建Hyperledger Fabric并开发区块链应用程序。
 
 安装 Git
 -----------
-如果之前没有安装过git命令或者它运行有错，请从下面的地址下载最新版本的 `git
+如果之前没有安装过git命令或者它运行起来有错，请从下面的地址下载最新版本的 `git
 <https://git-scm.com/downloads>`_。
 
 安装 cURL
 ------------
 
-如果之前没有安装过cURL命令或者它运行有错，请从下面的地址下载最新版本的 `cURL
+如果之前没有安装过cURL命令或者它运行起来有错，请从下面的地址下载最新版本的 `cURL
 <https://curl.haxx.se/download.html>`__ 
 
 .. note:: 如果您是运行再windows平台下，请参考下面的 `Windows
@@ -21,14 +21,14 @@
 Docker and Docker Compose
 -------------------------
 
-你需要安装如下的组件在你的Hyperledger Fabric系统上:
+您需要在您的Hyperledger Fabric系统上安装以下的组件:
 
   - MacOSX, \*nix, 和 Windows 10: `Docker <https://www.docker.com/get-docker>`__
     Docker 的版本需要在 17.06.2-ce 以上.
   - 比Windows 10低版本的Windows还需要安装: `Docker
     Toolbox <https://docs.docker.com/toolbox/toolbox_install_windows/>`__ -
 
-您可以在命令行终端中通过运行如下命令来检查已经安装的docker版本
+您可以在终端的命令行中通过运行以下命令来检查已经安装的docker版本
 
 .. code:: bash
 
@@ -58,7 +58,7 @@ Optional: 如果您希望docker的售后进程跟随系统一起启动，请执�
           所以，应该在已经安装过Docker的系统上，检查Docker Compose的版本应该在1.14.0以上
 	  如果不是，请安装较新的版本。
 	  
-您可以在您的命令行终端中运行如下命令来检查Docker Compose的版本:
+您可以在您的命令行终端中运行下面的命令来检查Docker Compose的版本:
 
 .. code:: bash
 
@@ -73,8 +73,8 @@ Hyperledger Fabric 使用Go语言编写
 
   - `Go <https://golang.org/dl/>`__ 请安装1.13.x以上的Go语言。
 
-考虑到我们将使用Go来编写链码程序，有两个您需要正确设置环境变量；您可以
-通过将设置放在适当的启动文件中而永久设置，例如
+考虑到我们将使用Go来编写链码程序，有两个您需要设置环境变量；您可以
+通过将他们放在适当的启动文件中永久生效，例如
 作为您的个人`~/.bashrc``文件，如果您使用的是``bash`` shell在Linux下。
 
 首先, 您需要设置环境变量 ``GOPATH`` 来指定链码的工作路径:
@@ -86,10 +86,10 @@ Hyperledger Fabric 使用Go语言编写
 .. note:: 您 **必须** 设置GOPATH环境变量
 
   尽管在Linux中，Go的“GOPATH”变量可以是冒号分隔的列表，如果未设置，则将使用默认值`$HOME/go`，
-  当前的Fabric构建框架仍然要求您设置并声明该变量，它必须且只能包含**一个**目录。
+  当前的Fabric构建框架仍然要求您设置并声明该变量，且只能包含**一个**目录。
   （此限制可能会在以后的版本中删除。）
 
-其次，您应该（或者在启动文件中）命令的搜索路径中包含Go的``bin``目录，如下所示Linux下的“bash”示例：
+其次，您应该在（或者在启动文件中）命令的搜索路径中包含Go的``bin``目录，如下所示Linux下的“bash”示例：
 
 .. code:: bash
 
@@ -106,7 +106,7 @@ Node.js Runtime and NPM
 
   - `Node.js <https://nodejs.org/en/download/>`__ 下载
 
-.. note:: 安装Node.js也将安装NPM，但是请确认已经安装的NPM版本。你可以
+.. note:: 安装Node.js也将安装NPM，但是请您确认已经安装的NPM版本。你可以
 	  使用以下命令升级 “npm”：
 
 .. code:: bash
@@ -205,9 +205,8 @@ Docker Toolbox命令自带的 ``curl`` 命令版本有点旧，不能正确应�
 到这一步，您的环境应该可以运行
 :doc:`getting_started` 中的示例和教程了。
 
-.. note:: If you have questions not addressed by this documentation, or run into
-          issues with any of the tutorials, please visit the :doc:`questions`
-          page for some tips on where to find additional help.
+.. note:: 如果您有本文档未解决的问题，或遇到
+	  有关任何教程的问题，请访问：doc:`questions`有关在何处查找其他帮助的一些提示。
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/
