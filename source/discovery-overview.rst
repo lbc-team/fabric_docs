@@ -1,10 +1,10 @@
-发现服务
+服务发现
 =================
 
 Why do we need service discovery?
 ---------------------------------
 
-为什么我们需要发现服务？
+为什么我们需要服务发现？
 ---------------------------------
 
 In order to execute chaincode on peers, submit transactions to orderers, and to
@@ -45,12 +45,12 @@ The **discovery service** improves this process by having the peers compute
 the needed information dynamically and present it to the SDK in a consumable
 manner.
 
-**发现服务** 通过「让 peers 来计算所需动态信息，然后提供给 SDK 去使用」这种方式改善了这个过程。
+**服务发现** 通过「让 peers 来计算所需动态信息，然后提供给 SDK 去使用」这种方式改善了这个过程。
 
 How service discovery works in Fabric
 -------------------------------------
 
-发现服务在 Fabric 中是怎样工作的？
+服务发现在 Fabric 中是怎样工作的？
 -------------------------------------
 
 The application is bootstrapped knowing about a group of peers which are
@@ -61,7 +61,7 @@ to the discovery service, they must have an ``EXTERNAL_ENDPOINT`` defined. To se
 how to do this, check out our :doc:`discovery-cli` documentation.
 
 应用程序在启动时知道可访问哪些对于应用开发人员/管理员而言可信的 peers，以提供对「发现查询」的可信响应。
-和应用程序在同一个组织内的 peer 会是一个好的候选 peer。请注意，为了使发现服务知晓 peers，必须为 peers
+和应用程序在同一个组织内的 peer 会是一个好的候选 peer。请注意，为了使服务发现知晓 peers，必须为 peers
 定义 ``EXTERNAL_ENDPOINT``。 要查看如何执行此操作，请查看我们的 :doc:`discovery-cli` 文档。
 
 The application issues a configuration query to the discovery service and obtains
@@ -69,15 +69,15 @@ all the static information it would have otherwise needed to communicate with th
 rest of the nodes of the network. This information can be refreshed at any point
 by sending a subsequent query to the discovery service of a peer.
 
-应用程序向发现服务发送一个配置查询，即可获得网络的静态信息，以供与网络中的其它节点进行通讯。
-这些信息随时可以刷新 —— 通过向一个 peer 的发现服务发送后续查询的请求。
+应用程序向服务发现发送一个配置查询，即可获得网络的静态信息，以供与网络中的其它节点进行通讯。
+这些信息随时可以刷新 —— 通过向一个 peer 的服务发现发送后续查询的请求。
 
 The service runs on peers -- not on the application -- and uses the network metadata
 information maintained by the gossip communication layer to find out which peers
 are online. It also fetches information, such as any relevant endorsement policies,
 from the peer's state database.
 
-发现服务运行于 peers 上，利用 gossip 通讯层维护的元数据来得知哪些 peer 在线。发现服务也从 peer 节
+服务发现运行于 peers 上，利用 gossip 通讯层维护的元数据来得知哪些 peer 在线。服务发现也从 peer 节
 点的状态数据库提取「背书策略」等信息。
 
 With service discovery, applications no longer need to specify which peers they
@@ -86,8 +86,8 @@ asking which peers are needed given a channel and a chaincode ID. The discovery
 service will then compute a descriptor comprised of two objects:
 
 
-有了发现服务，应用程序不必再指定要从哪些 peer 获得背书。SDK 只要依据给定的通道和链码 ID，向发现
-服务发送一个简单的查询。发现服务就可以计算出包含下面两个对象的描述：
+有了服务发现，应用程序不必再指定要从哪些 peer 获得背书。SDK 只要依据给定的通道和链码 ID，向发现
+服务发送一个简单的查询。服务发现就可以计算出包含下面两个对象的描述：
 
 1. **Layouts**: a list of groups of peers and a corresponding amount of peers from
    each group which should be selected.
@@ -149,12 +149,12 @@ SDK 则随机选择次优 peers。
 Capabilities of the discovery service
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-发现服务的功能
+服务发现的功能
 ~~~~~~~~~~~~
 
 The discovery service can respond to the following queries:
 
-发现服务可以对如下的请求响应：
+服务发现可以对如下的请求响应：
 
 * **Configuration query**: Returns the ``MSPConfig`` of all organizations in the channel
   along with the orderer endpoints of the channel.
