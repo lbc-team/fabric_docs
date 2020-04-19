@@ -39,7 +39,6 @@ Fabric官方文档主要是使用[reStructuredText格式](http://www.cnblogs.com
 git clone git@github.com:lbc-team/fabric_docs.git
 cd fabric_docs
 pipenv install
-pipenv shell
 ```
 
 3. 翻译及编译文档 
@@ -49,6 +48,7 @@ pipenv shell
 git checkout -b mybranch
 
 // 编译文档
+pipenv shell
 make html
 ```
 
@@ -58,8 +58,8 @@ make html
 ## 译者
 
 * [李大狗](https://learnblockchain.cn/people/127)
+* [Alex](https://learnblockchain.cn/people/377)
 * [Tiny熊](https://learnblockchain.cn/people/15)
-
 
 ## 常见问题
 

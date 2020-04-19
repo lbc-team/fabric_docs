@@ -2,7 +2,7 @@
           请参见左侧导航面板顶部的版本标签。
 	  您可以使用导航面板底部的选择器来更改它。
 
-A Blockchain Platform for the Enterprise
+企业级即区块链平台
 ========================================
 
 .. image:: images/hyperledger_fabric_logo_color.png
@@ -37,3 +37,5 @@ A Blockchain Platform for the Enterprise
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/
+
+Fabric 中文文档由登链社区发起翻译，未经授权请勿转载。

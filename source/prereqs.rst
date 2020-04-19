@@ -210,3 +210,6 @@ Docker Toolbox命令自带的 ``curl`` 命令版本有点旧，不能正确应�
 
 .. Licensed under Creative Commons Attribution 4.0 International License
    https://creativecommons.org/licenses/by/4.0/
+
+Fabric 中文文档由登链社区发起翻译，未经授权请勿转载。
+译者：[Alex](https://learnblockchain.cn/people/377)， 校对： [李大狗](https://learnblockchain.cn/people/127)
