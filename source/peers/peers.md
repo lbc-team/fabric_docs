@@ -108,12 +108,14 @@ Later in this section, you'll learn more about the detailed nature of this order
 
 下文中将继续讨论排序服务的详细特性，想要深入了解此流程，请参阅[交易流程](https://stone-fabric.readthedocs.io/zh/latest/txflow.html)主题。
 
-## Peers and Channels
+## 节点与通道
 
 Although this section is about peers rather than channels, it's worth spending a
 little time understanding how peers interact with each other, and with applications,
 via *channels* --- a mechanism by which a set of components within a blockchain
 network can communicate and transact *privately*.
+
+虽然本节讨论的是节点而不是通道，但还有必要花点时间来了解一下节点是如何通过**通道**来彼此交互，以及与应用程序交互的。通道是区块链网络的一种机制，有了它，区块链网络中的一组组件就能够**私下**通信和交易。
 
 These components are typically peer nodes, orderer nodes and applications and,
 by joining a channel, they agree to collaborate to collectively share and
@@ -125,6 +127,10 @@ might be totally separate (a group of work friends as compared to a group of
 hobby friends), or there can be some crossover between them. Nevertheless, each group
 is its own entity, with "rules" of a kind.
 
+这些组件通常是节点、排序节点和应用程序。通过加入一个通道，它们同意合作，以集体共享与管理与通道相关联的相同的账本副本。从概念上讲，你可以将通道比作好友分组（尽管通道的成员并不需要是朋友！）。一个人可能有用好几个不同的好友分组，每组都有它们一块进行的活动。这些群体可能是完全独立的（例如，一群工作上好的好友，一群兴趣上的好友），或者它们之间可能有交叉。但不管怎样，每个组都是自己的实体，具有某种「规则」。
+
+
+
 ![Peer5](./peers.diagram.5.png)
 
 *Channels allow a specific set of peers and applications to communicate with
@@ -134,12 +140,16 @@ channel as a pathway for communications between particular applications and
 peers. (For simplicity, orderers are not shown in this diagram, but must be
 present in a functioning network.)*
 
+> 通道允许一组特定的节点和应用程序在区块链网络中彼此通信。在本例中，应用程序 A 可以使用通道 C 直接与节点 P1和 P2通信。你可以把通道看成特定应用程序和节点之间通信的通道。（为了简单起见，此图中没有显示排序节点，但是在一个正常运行的网络中排序节点必须存在。）
+
 We see that channels don't exist in the same way that peers do --- it's more
 appropriate to think of a channel as a logical structure that is formed by a
 collection of physical peers. *It is vital to understand this point --- peers
 provide the control point for access to, and management of, channels*.
 
-## Peers and Organizations
+我们看到通道的存在方式与节点不同 —— 将通道看作由物理节点集合形成的逻辑结构更合适。**节点提供了访问与管理通道的控制点，理解这一点非常重要。**
+
+## 节点与组织
 
 Now that you understand peers and their relationship to ledgers, chaincodes
 and channels, you'll be able to see how multiple organizations come together to
@@ -150,7 +160,10 @@ than a single organization. Peers are central to how this kind of distributed
 network is built because they are owned by --- and are the connection points to
 the network for --- these organizations.
 
-<a name="Peer8"></a>
+既然您已经清楚了节点及其与账本、链码和通道的关系，那您将能够看到多个组织是如何组合在一起形成区块链网络的。
+
+区块链网络的管理者是一系列组织，而不是单个组织。因为节点属于这些组织，并且是这些组织与网络的连接点，所以它对于这种分布式网络的构建至关重要。
+
 ![Peer8](./peers.diagram.8.png)
 
 *Peers in a blockchain network with multiple organizations. The blockchain
@@ -164,6 +177,8 @@ particular organization will connect to their own organization's peers as well
 as those of different organizations. Again,
 for simplicity, an orderer node is not shown in this diagram.*
 
+> 区块链网络中的多个组织的节点。区块链网络是由不同组织所拥有和提供的节点构建而成的。在这个例子中，我们看到四个组织贡献了八个节点来组成一个网络。通道 C 连接了网络 N 中的五个节点—— P1、P3、P5、P7 和 P8。这些组织拥有的其他节点尚未连接到此通道，但它们通常至少连接到一个其他的通道上。由特定组织开发的应用程序将连接到他们自身组织的节点——亦或是不同组织的节点上。同样，为了简单起见，此图中没有显示排序节点。
+
 It's really important that you can see what's happening in the formation of a
 blockchain network. *The network is both formed and managed by the multiple
 organizations who contribute resources to it.* Peers are the resources that
@@ -172,6 +187,8 @@ more than just peers. There's a principle at work here --- the network literally
 does not exist without organizations contributing their individual resources to
 the collective network. Moreover, the network grows and shrinks with the
 resources that are provided by these collaborating organizations.
+
+务必了解区块链网络的形成过程，这一点十分重要。**区块链网络是由多个向其提供资源的组织形成和管理的**。节点是我们在本主题中讨论的资源，但是组织提供的资源不仅仅是节点。这里有一个原则——如果组织不向网络贡献自己的资源，那么网络根本就不会存在。此外，区块链网络随着协作组织所提供资源的增减而增长和收缩。
 
 You can see that (other than the ordering service) there are no centralized
 resources --- in the [example above](#Peer8), the network, **N**, would not exist
@@ -182,11 +199,15 @@ not depend on any individual organization --- it will continue to exist as long
 as one organization remains, no matter which other organizations may come and
 go. This is at the heart of what it means for a network to be decentralized.
 
+您可以看到（除了排序服务之外）没有集中的资源——在[上面](https://hyperledger-fabric.readthedocs.io/zh_CN/release-1.4/peers/peers.html#Peer8)的示例中，如果组织没有将自己的节点贡献给网络 **N** ，那么N将不存在。这反映了以下事实：除非各组织把构成网络的资源贡献出来，否则网络在任何意义上都不存在。此外，网络并不依赖于任何一个单独的组织——不管其他组织加入或离开，只要还有一个组织，网络就还会继续存在。这就是网络去中心化意思的核心。
+
 Applications in different organizations, as in the [example above](#Peer8), may
 or may not be the same. That's because it's entirely up to an organization as to how
 its applications process their peers' copies of the ledger. This means that both
 application and presentation logic may vary from organization to organization
 even though their respective peers host exactly the same ledger data.
+
+就像[上边](https://hyperledger-fabric.readthedocs.io/zh_CN/release-1.4/peers/peers.html#Peer8)的例子，不同的组织中的应用程序可能相同也可能不同。组织的应用程序如何处理其节点的账本副本，完全取决于组织。这意味着虽然各组织的节点保存着完全相同的账本数据，但是应用程序和呈现逻辑都可能会因组织而异。
 
 Applications connect either to peers in their organization, or peers in another
 organization, depending on the nature of the ledger interaction that's required.
@@ -195,11 +216,15 @@ organization's peers. For ledger-update interactions, we'll see later why
 applications need to connect to peers representing *every* organization that is
 required to endorse the ledger update.
 
-## Peers and Identity
+应用程序可以连接到其所在组织上的节点，也可以连接到另一个组织上的节点，这取决于所需的账本交互的性质。对于账本查询交互来说，应用程序通常连接到它们自己组织的节点上。对于账本更新交互来说，下文中我们将谈到为什么应用程序需要连接到代表**每个**组织的节点上——这些组织需要支持账本的更新。
+
+## 节点和身份
 
 Now that you've seen how peers from different organizations come together to
 form a blockchain network, it's worth spending a few moments understanding how
 peers get assigned to organizations by their administrators.
+
+既然您已经清楚了来自不同组织的节点是如何聚集在一起形成区块链网络的，那么有必要花一些时间，来了解下组织管理员是如何将节点分配到组织中去的。
 
 Peers have an identity assigned to them via a digital certificate from a
 particular certificate authority. You can read lots more about how X.509
@@ -207,6 +232,8 @@ digital certificates work elsewhere in this guide but, for now, think of a
 digital certificate as being like an ID card that provides lots of verifiable
 information about a peer. *Each and every peer in the network is assigned a
 digital certificate by an administrator from its owning organization*.
+
+节点会被分配一个身份，这一身份是由特定证书授权中心（CA）颁发给它们的数字证书赋予的。本指南的其他部分讲解了更多关于 X.509 数字证书工作原理的信息，但是就目前而言，可以将数字证书看作是一个 ID 卡，它提供了大量关于节点的可验证信息。**网络中的每个节点都由其所属组织的管理员分配一个数字证书。**
 
 ![Peer9](./peers.diagram.9.png)
 
@@ -216,6 +243,8 @@ identities issued by CA1. Channel C determines from a policy in its channel
 configuration that identities from CA1 should be associated with Org1 using
 ORG1.MSP. Similarly, P3 and P4 are identified by ORG2.MSP as being part of
 Org2.*
+
+> 当节点连接到通道时，节点的数字证书通过该通道的 MSP（成员服务提供者） 识别其所属组织。在这个例子中，P1 和 P2 的身份由证书授权中心 CA1 颁布。通道 C 根据其通道配置的策略，确定应该使用ORG1.MSP 将来自 CA1 的身份与 Org1 关联。类似的，P3 和 P4 由 ORG2.MSP 识别为 Org2 的一部分。
 
 Whenever a peer connects using a channel to a blockchain network, *a policy in
 the channel configuration uses the peer's identity to determine its
@@ -229,6 +258,8 @@ section on MSPs and access control policies elsewhere in this guide. But for now
 think of an MSP as providing linkage between an individual identity and a
 particular organizational role in a blockchain network.
 
+当一个节点使用通道连接到区块链网络时，**通道配置中的策略使用节点的身份来确定其权限。**身份与组织之间的映射是由一个名为**成员服务提供者**（MSP）的组件建立的——它规定了如何在特定组织中将一个特定角色分配给一个节点，并让节点相应地获得对区块链资源的适当访问权。此外，因为节点只能由单个组织拥有，所以它与单个 MSP 关联。稍后我们将谈到更多关于节点访问控制的内容，本指南的其他部分中，有一整节是关于 MSP 和访问控制策略的。但是现在，可以将 MSP 看作是区块链网络中个人身份和特定组织角色之间的链接提供方。
+
 To digress for a moment, peers as well as *everything that interacts with a
 blockchain network acquire their organizational identity from their digital
 certificate and an MSP*. Peers, applications, end users, administrators and
@@ -238,6 +269,8 @@ a blockchain network using an identity --- a principal.* You can learn lots
 more about principals and organizations elsewhere in this guide, but for now
 you know more than enough to continue your understanding of peers!
 
+稍微讨论一个额外的话题，节点以及**所有与区块链网络交互的东西都从它们的数字证书和 MSP 中获得它们的组织身份。**如果节点、应用程序、最终用户、管理员和排序服务想要与区块链网络进行交互，那么它们必须具有身份和关联的 MSP。**我们为使用身份与区块链网络交互的每个实体提供了一个名称——主体（principal）**。在其他章节中，您可以了解更多关于主体和组织的信息，但是现在你已经有足够的知识来继续学习节点了！
+
 Finally, note that it's not really important where the peer is physically
 located --- it could reside in the cloud, or in a data centre owned by one
 of the organizations, or on a local machine --- it's the digital certificate
@@ -246,7 +279,9 @@ In our example above, P3 could be hosted in Org1's data center, but as long as t
 digital certificate associated with it is issued by CA2, then it's owned by
 Org2.
 
-## Peers and Orderers
+最后，要注意的是节点位于哪里并不重要——它可以位于云端，或者位于一个组织的数据中心中，又或者位于一个本地机器上-——决定节点所属组织的是与该节点相关的数字证书。在我们上面的例子中，P3 可以位于 Org1 的数据中心，但是只要与 P3 相关联的数字证书是由 CA2 颁发，那么 P3 就属于 Org2。
+
+## 节点与排序节点
 
 We've seen that peers form the basis for a blockchain network, hosting ledgers
 and smart contracts which can be queried and updated by peer-connected applications.
@@ -254,6 +289,8 @@ However, the mechanism by which applications and peers interact with each other
 to ensure that every peer's ledger is kept consistent with each other is mediated
 by special nodes called *orderers*, and it's to these nodes we now turn our
 attention.
+
+我们已经看到，节点构成了区块链网络的基础 —— 它承载着账本和智能合约，与节点相连接的应用程序可以对账本和智能合约进行查询和更新。然而，应用程序和节点通过一种机制进行彼此交互，以确保每个节点上的账本始终都彼此一致，这一机制是由由名为**排序节点**的特殊节点来协调的，现在我们就来讨论这些节点。
 
 An update transaction is quite different from a query transaction because a single
 peer cannot, on its own, update the ledger --- updating requires the consent of other
@@ -265,9 +302,13 @@ committed to the ledger, peers will notify their connected applications that the
 ledger has been updated. You're about to be shown a lot more detail about how
 peers and orderers manage the consensus process in this section.
 
+更新交易与查询交易有很大的不同，这是因为光靠单个节点无法完成账本更新—— 更新需要网络中其他节点的同意。一个节点需要等到其他节点对一项账本更新交易表示同意之后，才能将该交易提交到自己的本地账本上。这个过程称叫做**共识**，比起简单的查询，共识需要的时间更长。但是，当所有需要批准某交易的节点都已批准该交易，并且已将该交易提交到账本上时，那么各节点会把账本已经更新的消息通知到与其连接的应用程序。下文将继续详细谈论节点和排序节点是如何管理共识过程的。
+
 Specifically, applications that want to update the ledger are involved in a
 3-phase process, which ensures that all the peers in a blockchain network keep
 their ledgers consistent with each other. 
+
+具体来说，想要更新账本的应用程序会涉及到三个步骤，这些步骤确保了区块链网络中的所有节点能与其它节点共同保持账本的一致性。
 
 * In the first phase, applications work with a subset of *endorsing peers*, each of
   which provide an endorsement of the proposed ledger update to the application,
@@ -276,18 +317,25 @@ their ledgers consistent with each other.
   as transactions and packaged into blocks.
 * In the third and final phase, these blocks are distributed back to every peer where
   each transaction is validated before being committed to that peer's copy of the ledger.
+* 第一步，应用程序与一组**认可节点**合作，每个认可节点都向该应用程序提供对提议账本更新的认可，但是并不会把该提议更新应用到自己的账本副本上。
+* 第二步，把各认可节点做出的认可收集起来作为交易打包进区块。
+* 最后一步，将这些区块分发给每个节点，节点会对每项交易进行验证，随后将交易提交到各自账本副本上。
 
 As you will see, orderer nodes are central to this process, so let's
 investigate in a little more detail how applications and peers use orderers to
 generate ledger updates that can be consistently applied to a distributed,
 replicated ledger.
 
-### Phase 1: Proposal
+如你将见，排序节点是上述过程的核心，所以让我们来深入研究一下关于「应用程序和节点如何使用排序节点生成账本更新」的更多细节 —— 这些更新可被持续应用到一个分布式、可复制的账本上。
+
+### 第一阶段：提案
 
 Phase 1 of the transaction workflow involves an interaction between an
 application and a set of peers --- it does not involve orderers. Phase 1 is only
 concerned with an application asking different organizations' endorsing peers to
 agree to the results of the proposed chaincode invocation.
+
+交易流程的第一阶段涉及的是一个应用程序和一组节点之间的交互，并不涉及排序节点。阶段一发生的只是：应用程序请求不同组织的认可节点对「链码调用的计划结果」做出同意。
 
 To start phase 1, applications generate a transaction proposal which they send
 to each of the required set of peers for endorsement. Each of these *endorsing peers* then
@@ -297,6 +345,8 @@ ledger, but rather simply signs it and returns it to the application. Once the
 application has received a sufficient number of signed proposal responses,
 the first phase of the transaction flow is complete. Let's examine this phase in
 a little more detail.
+
+要开始第一阶段，应用程序必须先生成一个交易提案，并将该提案发送给每个需要对交易做出认可的节点进行认可。随后，每个认可节点都使用该交易提案独立地执行一个链码，以生成交易提案响应。认可节点不会将此更新应用到账本上，它只是简单地对交易进行签名并将其返回给应用程序。一旦应用程序收到足够数量的签名提案响应，那么交易流程的第一阶段就完成了。让我们来更详细地研究一下这个阶段。
 
 ![Peer10](./peers.diagram.10.png)
 
@@ -309,6 +359,16 @@ proposal P generating transaction T1 response R2 which it endorses with E2.
 Application A1 receives two endorsed responses for transaction T1, namely E1
 and E2.*
 
+> 返回已认可提案响应的各个节点会独立执行交易提案。
+>
+> 在本例中，应用程序 A1 生成交易 T1 提案 P，并将其发送给通道 C 上的节点 P1 和 P2。
+>
+> P1 使用交易 T1 提案 P 调用链码 S1，以生成 交易 T1 响应 R1（R 指的是 Organazation，因为 Order 被称为 O），并且 P1 通过 E1（Endorsement 认可）对该响应进行认可。
+>
+> P2 独立使用交易 T1 提案 P 来执行 S1，以生成交易 T1 响应 R2，该响应是由 E2 认可的。
+>
+> 应用程序 A1 关于收到两个对交易 T1 的已认可的响应，即 E1 和 E2。
+
 Initially, a set of peers are chosen by the application to generate a set of
 proposed ledger updates. Which peers are chosen by the application? Well, that
 depends on the *endorsement policy* (defined for a chaincode), which defines
@@ -317,12 +377,16 @@ can be accepted by the network. This is literally what it means to achieve
 consensus --- every organization who matters must have endorsed the proposed
 ledger change *before* it will be accepted onto any peer's ledger.
 
+最初，应用程序选择一组节点来生成一些账本更新提议。应用程序会选择哪些节点呢？这取决于**认可策略**（被链码所定义的），认可策略定义了一群组织，这些组织需要在网络接受某项账本更新提案之前对其作出认可。这就是达成共识的真正含义——在任何节点的账本接受账本更新提案之前，所有相关组织必须对该拟账本更新进行认可。
+
 A peer endorses a proposal response by adding its digital signature, and signing
 the entire payload using its private key. This endorsement can be subsequently
 used to prove that this organization's peer generated a particular response. In
 our example, if peer P1 is owned by organization Org1, endorsement E1
 corresponds to a digital proof that "Transaction T1 response R1 on ledger L1 has
 been provided by Org1's peer P1!".
+
+节点通过添加自己的数字签名来对提案响应进行认可，并使用自己的私钥为整体进行签名。该背书随后可被用于证明此组织的节点生成了一个特定响应。在我们的示例中，如果节点 P1 属于组织 Org1，则背书 E1 对应了一个数字证明——“账本 L1 上的交易 T1 响应 R1 是由 Org1 的 节点 P1 提供的！”。
 
 Phase 1 ends when the application receives signed proposal responses from
 sufficient peers. We note that different peers can return different and
@@ -340,13 +404,17 @@ comparison before non-determinism can be detected. (Strictly speaking, even this
 is not enough, but we defer this discussion to the transaction section, where
 non-determinism is discussed in detail.)
 
+当应用程序收到足够数量节点发来的签名的提案响应时，第一阶段就结束了。我们注意到，对于**相同的交易提案**，不同的节点可能会向应用程序返回不同的，因此导致不一致的交易响应。这或许只是因为各节点生成交易响应的时间不同，账本的世界状态也不同，在这种情况下，应用程序只需请求一个更新版本的提案响应即可；又或许是因为链码是**不确定**的，这种情况发生的可能性不太大，但是一旦发生，后果极其严重。不确定性是链码和账本的敌人，如果发生这种情况，则表明提案的交易存在严重问题，因为不一致的结果显然不能适用于账本。单个节点无法知道自己的交易结果是非确定性的——只有将所有交易响应收集在一起进行比较才能发现不确定性。（严格来说，这些依然不够，不过我们暂且不继续往下谈，后续在交易部分会深入探讨非确定性的问题。）
+
 At the end of phase 1, the application is free to discard inconsistent
 transaction responses if it wishes to do so, effectively terminating the
 transaction workflow early. We'll see later that if an application tries to use
 an inconsistent set of transaction responses to update the ledger, it will be
 rejected.
 
-### Phase 2: Ordering and packaging transactions into blocks
+在第一阶段的最后，应用程序可以按照自己的意愿丢弃不一致的交易响应，从而有效地提前终止交易流程。稍后我们将看到，如果应用程序试图使用一组不一致的交易响应来更新账本，它将被拒绝。
+
+### 第二阶段：排序和把交易打包进区块
 
 The second phase of the transaction workflow is the packaging phase. The orderer
 is pivotal to this process --- it receives transactions containing endorsed
@@ -355,7 +423,9 @@ transactions into blocks. For more details about the
 ordering and packaging phase, check out our
 [conceptual information about the ordering phase](../orderer/ordering_service.html#phase-two-ordering-and-packaging-transactions-into-blocks).
 
-### Phase 3: Validation and commit
+交易流程的第二阶段是打包阶段。排序节点是该流程的关键  —— 多个应用程序向排序节点发送交易，其中包含了已认可的交易提案响应，随后排序节点将这些交易排序进区块。有关排序和打包阶段的更多细节，请查看[排序阶段的概念信息](https://hyperledger-fabric.readthedocs.io/zh_CN/release-1.4/orderer/ordering_service.html#phase-two-ordering-and-packaging-transactions-into-blocks)。
+
+### 第三阶段：验证和提交
 
 At the end of phase 2, we see that orderers have been responsible for the simple
 but vital processes of collecting proposed transaction updates, ordering them,
@@ -368,6 +438,10 @@ block is validated to ensure that it has been consistently endorsed by all
 relevant organizations before it is committed to the ledger. Failed transactions
 are retained for audit, but are not committed to the ledger.
 
+在阶段二的末尾，我们看到排序节点负责的是对提案的交易更新进行收集、排序、打包进区块，以便分发给各节点，这些任务虽简单但却十分关键。
+
+交易流程的最后一个阶段涉及到从排序节点到 peer 节点的区块的分发和随后的验证，节点可将这些交易应用到账本上。具体来说，所有节点都会对一个区块内的每一笔交易进行验证，以确保这些交易在应用到账本上之前已经得到所有相关组织的认可。未成功的交易会被留下来进行审计，但不会提交到账本上。
+
 ![Peer12](./peers.diagram.12.png)
 
 *The second role of an orderer node is to distribute blocks to peers. In this
@@ -378,6 +452,14 @@ to ledger L1 on P2. Once this process is complete, the ledger L1 has been
 consistently updated on peers P1 and P2, and each may inform connected
 applications that the transaction has been processed.*
 
+> 排序节点的第二个角色是将区块分发给 peer 节点。
+>
+> 在本例中，排序节点 O1 将区块 B2 分配给节点 P1 和 P2。节点 P1 处理区块 B2，最终将一个新的区块添加到节点 P1 的账本 L1 上。
+>
+> 同时，节点 P2 处理区块 B2，最终将一个新的区块添加到节点 P2 的账本 L1 上。
+>
+> 一旦这个过程结束，节点 P1和 P2 各自的账本 L1 就已经一致更新了，并且 P1 和 P2 都会把交易已处理完毕的消息通知给与它们连接的应用程序。
+
 Phase 3 begins with the orderer distributing blocks to all peers connected to
 it. Peers are connected to orderers on channels such that when a new block is
 generated, all of the peers connected to the orderer will be sent a copy of the
@@ -387,6 +469,10 @@ ledger can be kept consistent. It's also worth noting that not every peer needs
 to be connected to an orderer --- peers can cascade blocks to other peers using
 the **gossip** protocol, who also can process them independently. But let's
 leave that discussion to another time!
+
+阶段三从排序节点将区块分发给与其连接的所有 peer 节点开始。
+
+peer 节点和通道上的排序节点相连接，这样一来，当生成一个新区块时，连接到排序节点的所有 Peer 节点都将收到这个新区块的副本。随后每个 Peer 节点独立地处理该新区块，不过通道上各节点的处理方式完全相同。因此，我们将看到各节点的账本依然保持一致。同样值得注意的是，并不是每个 peer 节点都需要连接到一个排序节点上——peer 节点可以使用 **gossip** 协议将区块信息发送给其他（未连接到排序节点的） Peer 节点，这些 Peer 节点在收到信息后也可以独立地处理新区块。不过我们下次再讨论这个问题！
 
 Upon receipt of a block, a peer will process each transaction in the sequence in
 which it appears in the block. For every transaction, each peer will verify that
@@ -402,6 +488,8 @@ decision to send the proposal transactions. In case the application violates
 the endorsement policy by sending wrong transactions, the peer is still able to
 reject the transaction in the validation process of phase 3.
 
+当接收到一个区块时，节点将按照各交易在区块中出现的顺序依次进行处理。各节点将根据生成交易的链码中的**背书策略**对每项交易进行验证，以确保所有交易都已被相关组织认可。例如，某些交易可能只需要一个组织认可，而另一些交易可能需要多个组织的认可才能被视为有效。该验证过程将验证所有相关组织是否都已经产生了相同的结果。还要注意的是，此验证与阶段一中的认可检查不同，在认可检查中，是应用程序接收了认可节点发送的响应，并作出发送提案交易的决定。如果应用程序发送错误的交易，违反了认可策略，那么节点在阶段三的验证环节依然能够拒绝该交易。
+
 If a transaction has been endorsed correctly, the peer will attempt to apply it
 to the ledger. To do this, a peer must perform a ledger consistency check to
 verify that the current state of the ledger is compatible with the state of the
@@ -412,11 +500,15 @@ transaction update is no longer valid and therefore can no longer be applied. In
 this way, the ledger is kept consistent across each peer in the channel because
 they each follow the same rules for validation.
 
+如果一笔交易被正确地认可，节点将试图把它应用于账本。为此，节点必须执行账本一致性检查，以验证账本的当前状态与生成提案更新时的账本状态是否兼容。两个状态可能不总是兼容的，即便交易已经被所有相关组织认可了。例如，另一个交易可能更新了账本中的相同资产，这就导致前一个交易更新不再有效，因此无法将其应用到账本上。通过这种方式，每个节点的账本副本在整个网络中保持一致，这是因为它们都遵循相同的验证规则。
+
 After a peer has successfully validated each individual transaction, it updates
 the ledger. Failed transactions are not applied to the ledger, but they are
 retained for audit purposes, as are successful transactions. This means that
 peer blocks are almost exactly the same as the blocks received from the orderer,
 except for a valid or invalid indicator on each transaction in the block.
+
+在节点成功地验证每一笔交易之后，它将更新账本。节点不会把失败的交易应用到账本上，但为了审计会保留这些交易，就像成功的交易一样。这意味着节点中的区块与从排序节点接收到的区块几乎完全相同，唯一不同的是节点区块中的每个交易上都存在有效或无效指示符。
 
 We also note that phase 3 does not require the running of chaincodes --- this is
 done only during phase 1, and that's important. It means that chaincodes only have
@@ -427,6 +519,8 @@ the chaincodes (the transaction proposal responses) which are shared with every
 peer in the channel, whether or not they endorsed the transaction. This
 specialization of endorsing peers is designed to help scalability and confidentiality.
 
+我们还注意到，阶段三不需要运行链码，在阶段一链码已经执行完毕了，这一点很重要。它意味着链码只需存在于认可节点上，并不要求在整个区块链网络上都能使用链码。这样一来，只有参与认可的组织才能看到链码的逻辑，因此这一点通常很有帮助。而链码的输出（交易提案响应）则与之相反，链码输出会在通道上的各节点间共享，无论这些节点是否参与了该交易的背书。这种认可节点的特殊设计旨在提升区块链网络的可扩展性和机密性。
+
 Finally, every time a block is committed to a peer's ledger, that peer
 generates an appropriate *event*. *Block events* include the full block content,
 while *block transaction events* include summary information only, such as
@@ -436,12 +530,16 @@ published at this time. Applications can register for these event types so
 that they can be notified when they occur. These notifications conclude the
 third and final phase of the transaction workflow.
 
+最后，每次将一个区块提交到节点的账本上时，该节点都会生成一个适当的**事件**。**区块事件**包括完整的区块内容，而区块交易事件只包含总结信息，例如区块中的每个交易经验证显示有效还是无效。链码执行产生的**链码**事件也可以在这个时候发布出去。应用程序可以注册这些事件的类型，以便在这些事件发生时，它可以得到通知。这些通知标志着交易流程最后一步结束了。
+
 In summary, phase 3 sees the blocks which are generated by the orderer
 consistently applied to the ledger. The strict ordering of transactions into
 blocks allows each peer to validate that transaction updates are consistently
 applied across the blockchain network.
 
-### Orderers and Consensus
+总结下，在第三阶段中，排序节点生成的区块都被一致地应用于账本。将交易严格排序到区块中，这使得每个节点都可以验证交易更新是否在整个区块链网络中得到了一致的应用。
+
+### 排序节点和共识
 
 This entire transaction workflow process is called *consensus* because all peers
 have reached agreement on the order and content of transactions, in a process
@@ -459,5 +557,12 @@ most fundamental element --- they form the network, host chaincodes and the
 ledger, handle transaction proposals and responses, and keep the ledger
 up-to-date by consistently applying transaction updates to it.
 
+上述的整个交易流程叫做**共识**，这是因为所有节点都已就交易的顺序和内容达成一致，排序节点在这个流程中扮演调节者的角色。共识是一个多步骤的过程，只有当流程完成时，应用程序才会收到账本更新的通知——在不同的节点上，更新完成的时间可能略有不同。
+
+我们将在以后的排序节点主题中更详细地讨论它，但是现在我们可以先这样理解排序节点：**它从应用程序那里收集和分发账本更新的提案，以供节点进行验证并最终应用到账本上。**
+
+就是这样！现在我们已经完成了节点以及与 Fabric 相关的其他组件的学习。我们已经看到，节点在很多方面都是最基本的元素——它们组成网络、托管链码和账本、处理交易提案和响应，并且与其他节点持续地把交易更新应用到账本上，从而使账本的状态保持最新。
+
 <!--- Licensed under Creative Commons Attribution 4.0 International License
 https://creativecommons.org/licenses/by/4.0/) -->
+
