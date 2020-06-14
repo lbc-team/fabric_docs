@@ -1,12 +1,13 @@
-# Ledger
+# 账本
 
 **Audience**: Architects, Application and smart contract developers,
 administrators
 
-A **ledger** is a key concept in Hyperledger Fabric; it stores important factual
-information about business objects; both the current value of the attributes of
-the objects, and the history of transactions that resulted in these current
-values.
+**受众**：架构师、应用程序和智能合约开发者、管理员
+
+A **ledger** is a key concept in Hyperledger Fabric; it stores important factual information about business objects; both the current value of the attributes of the objects, and the history of transactions that resulted in these current values.
+
+**账本**是 Hyperledger Fabric 中的一个关键概念，它存储了有关业务对象的重要事实信息，其中既包括对象属性的当前值，也包括产生这些当前值的交易的历史。
 
 In this topic, we're going to cover:
 
@@ -22,13 +23,28 @@ In this topic, we're going to cover:
 * [Ledgers and namespaces](#namespaces)
 * [Ledgers and channels](#channels)
 
-## What is a Ledger?
+在这一主题里，我们将涵盖以下内容：
+
+- 什么是账本？
+- 业务对象的实际存储
+- 区块链账本
+- 世界状态
+- 区块链数据结构
+- 区块链如何存储区块
+- 交易
+- 世界状态数据库选择
+- **Fabcar** 示例账本
+- 账本和命名空间
+- 账本和通道
+
+## 账本是什么?
 
 A ledger contains the current state of a business as a journal of transactions.
 The earliest European and Chinese ledgers date from almost 1000 years ago, and
-the Sumerians had [stone
-ledgers](http://www.sciencephoto.com/media/686227/view/accounting-ledger-sumerian-cuneiform)
+the Sumerians had [stone ledgers](http://www.sciencephoto.com/media/686227/view/accounting-ledger-sumerian-cuneiform)
 4000 years ago -- but let's start with a more up-to-date example!
+
+账本记录着业务的当前状态，它就像一个关于交易的日记。欧洲和中国最早的账本可以追溯到近 1000 年前，苏美尔人在 4000 年前就已经有[石制账本](http://www.sciencephoto.com/media/686227/view/accounting-ledger-sumerian-cuneiform)了，不过我们还是从离我们最近的例子开始讲吧！
 
 You're probably used to looking at your bank account. What's most important to
 you is the available balance -- it's what you're able to spend at the current
@@ -40,7 +56,9 @@ is motivated by these same two concerns -- to present the current value of a set
 of ledger states, and to capture the history of the transactions that determined
 these states.
 
-## Ledgers, Facts, and States
+你可能已经习惯查看你的银行账户了。对你来说，最重要的是账户余额，它是你当时就能花的钱。如果你想看看你的余额是如何产生的，可以浏览一下相关的交易收入和支出。这是现实生活中的一个账本示例 —— 一个状态（您的银行余额）和一组促成该状态的有序交易（收入和支出）。Hyperledger Fabric 也致力于这两个方面 —— 旨在呈现一组账本状态的当前值，同时记录下促成了以上账本状态的交易的历史。
+
+## 账本、事实和状态
 
 A ledger doesn't literally store business objects -- instead it stores **facts**
 about those objects. When we say "we store a business object in a ledger" what
@@ -51,6 +69,8 @@ object, rather than facts about an object. In the case of a digital object, it's
 likely that it lives in an external datastore; the facts we store in the ledger
 allow us to identify its location along with other key information about it.
 
+账本储存的其实并不是业务对象本身，而是与业务对象相关的**事实**信息（如汽车的牌子便是汽车的事实信息）。当我们说“我们在账本中存储一个业务对象”时，其实是说我们正在记录与一个业务对象当前状态有关的事实，以及与促成这一当前状态的交易历史相关的事实。在一个日益数字化的世界里，我们会感觉自己正在看的是一个物体本身，而不是关于这个物体的一些事实。对于数字对象来说，它可能位于一个外部数据库中，但通过我们储存在账本中有关该对象的事实就能够识别出该数字对象的所在位置以及其他与之相关的关键信息。
+
 While the facts about the current state of a business object may change, the
 history of facts about it is **immutable**, it can be added to, but it cannot be
 retrospectively changed. We're going to see how thinking of a blockchain as an
@@ -59,8 +79,12 @@ to understand it.
 
 Let's now take a closer look at the Hyperledger Fabric ledger structure!
 
+虽然与业务对象当前状态相关的事实可能会发生改变，但是与之相关的事实历史是**不可变的**，我们可以在事实历史上增加新的事实，但无法更改历史中已经存在的事实。我们将看到，如果把区块链看作是与业务对象有关的事实历史，且该历史是不可更改的，那么我们就能够很轻松、高效地理解区块链。
 
-## The Ledger
+现在我们来深入探讨一下 Hyperledger Fabric 的账本结构！
+
+
+## 账本详解
 
 In Hyperledger Fabric, a ledger consists of two distinct, though related, parts
 -- a world state and a blockchain. Each of these represents a set of facts about
